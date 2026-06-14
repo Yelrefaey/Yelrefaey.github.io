@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yousef Elrefaey — Mechatronics Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #ffffff;
+      --surface:   #f7f8fa;
+      --border:    #e4e7ed;
+      --accent:    #1a56db;
+      --accent2:   #0e9f6e;
+      --text:      #111827;
+      --muted:     #6b7280;
+      --nav-h:     60px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+    .nav-links a.active { color: var(--accent); background: #eff4ff; }
+
+    /* ── SECTIONS ── */
+    section {
+      display: none;
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 64px) 48px 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+      animation: fadeUp 0.3s ease;
+    }
+    section.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 64px;
+      align-items: center;
+      min-height: calc(100vh - var(--nav-h));
+      padding-top: calc(var(--nav-h) + 20px);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff4ff;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 4px 13px;
+      border-radius: 20px;
+    }
+
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.18s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1448c0; }
+    .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-photo img,
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .photo-placeholder {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      gap: 10px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 40px;
+    }
+
+    /* ── EXP CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px;
+      margin-bottom: 28px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--text);
+    }
+
+    .card-company {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 3px;
+    }
+
+    .card-date {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.78rem;
+      padding: 4px 13px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 20px;
+      line-height: 1.85;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-slot {
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      border: 2px dashed var(--border);
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .gallery-slot:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(26,86,219,0.1); }
+
+    .gallery-slot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .slot-empty {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #c4c9d4;
+      font-size: 0.72rem;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .gallery-slot input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 30px 36px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .edu-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      padding-top: 4px;
+      line-height: 1.5;
+    }
+
+    .edu-degree {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      color: var(--accent2);
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .edu-detail { color: var(--muted); font-size: 0.875rem; }
+
+    .lang-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+    .lang-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .lang-pill span {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-cat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .skill-cat-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .skill-items { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .skill-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* ── RESUME ── */
+    .resume-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 56px;
+      text-align: center;
+      max-width: 560px;
+    }
+
+    .resume-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .resume-box p { color: var(--muted); margin-bottom: 28px; }
+
+    .file-icon {
+      width: 64px; height: 64px;
+      background: #eff4ff;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(26,86,219,0.08);
+      transform: translateY(-2px);
+    }
+
+    .c-icon {
+      width: 46px; height: 46px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .c-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 4px;
+    }
+
+    .c-value { font-weight: 500; font-size: 0.92rem; }
+
+    .contact-blurb {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      padding: 32px 36px;
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+
+    .contact-blurb strong { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links a { padding: 5px 8px; font-size: 0.76rem; }
+      section { padding: calc(var(--nav-h) + 40px) 20px 60px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { order: -1; max-width: 180px; }
+      .contact-cards { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; gap: 6px; }
+    }
+
+    /* ── SUBSECTION CARDS ── */
+    .subsection-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .subsection-header {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .subsection-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--border);
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .subsection-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subsection-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showSection('home')">Yousef Elrefaey</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showSection('home')"      id="nav-home"      class="active">Home</a></li>
+    <li><a href="#" onclick="showSection('hirth')"     id="nav-hirth">Hirth Engines</a></li>
+    <li><a href="#" onclick="showSection('fort')"      id="nav-fort">Fort Group</a></li>
+    <li><a href="#" onclick="showSection('education')" id="nav-education">Education</a></li>
+    <li><a href="#" onclick="showSection('skills')"    id="nav-skills">Skills</a></li>
+    <li><a href="#" onclick="showSection('resume')"    id="nav-resume">Resume</a></li>
+    <li><a href="#" onclick="showSection('contact')"   id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">Mechatronics Engineer</div>
+      <h1>Yousef<br/>Elrefaey</h1>
+      <p class="hero-sub">
+        B.Sc. Automotive Mechatronics · GIU Cairo<br/>
+        Incoming M.Sc. Smart Systems · HFU Germany
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Defense &amp; Aerospace</span>
+        <span class="tag">Autonomous Systems</span>
+        <span class="tag">Reverse Engineering</span>
+        <span class="tag">Aviation Testing</span>
+        <span class="tag">UAVs</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#" onclick="showSection('contact')" class="btn btn-primary">Get in Touch</a>
+        <a href="#" onclick="showSection('resume')"  class="btn btn-outline">View Resume</a>
+        <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <!-- SWAP THIS: replace photo-placeholder div with <img src="images/you.jpg" alt="Yousef Elrefaey"/> -->
+      <div class="photo-placeholder">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Add your photo<br/><span style="font-size:0.7rem;color:#c4c9d4">replace with &lt;img src="images/you.jpg"&gt;</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRTH ENGINES -->
+<section id="hirth">
+  <p class="eyebrow">Work Experience</p>
+  <h2 class="page-title">Hirth Engines GmbH</h2>
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-role">R&amp;D Engineering Intern</div>
+        <div class="card-company">Hirth Engines GmbH · Stuttgart, Germany</div>
+      </div>
+      <div class="card-date">Stuttgart · 2023</div>
+    </div>
+    <p class="card-desc">
+      Worked within the R&amp;D department on aviation engine testing and qualification. Conducted environmental
+      testing to DO-160G compliance standards covering vibration, temperature, and altitude procedures. Used
+      CATIA V5 for component design and technical documentation, contributing to the development and
+      validation of small aircraft engines.
+    </p>
+    <div class="chips">
+      <span class="chip">CATIA V5</span>
+      <span class="chip">DO-160G</span>
+      <span class="chip">RTCA Standards</span>
+      <span class="chip">Aviation Engine Testing</span>
+      <span class="chip">Environmental Testing</span>
+      <span class="chip">Technical Documentation</span>
+      <span class="chip">R&amp;D</span>
+    </div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">01</div>
+      <div>
+        <div class="subsection-title">DO-160G Environmental Testing</div>
+        <p class="subsection-desc">Conducted qualification testing on aircraft engine components following RTCA DO-160G standards. Tests covered vibration, temperature extremes, altitude simulation, and humidity — ensuring components meet airworthiness requirements for certified aviation use.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-hirth-testing"></div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">02</div>
+      <div>
+        <div class="subsection-title">CATIA V5 — Design &amp; Documentation</div>
+        <p class="subsection-desc">Used CATIA V5 for component modelling, assembly design, and producing technical drawings as part of the engine development workflow. Contributed to documentation packages required for R&amp;D sign-off and internal engineering review.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-hirth-catia"></div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">03</div>
+      <div>
+        <div class="subsection-title">Certificates &amp; Completion Documents</div>
+        <p class="subsection-desc">Internship completion certificate and training or qualification certificates obtained during the placement at Hirth Engines GmbH, Stuttgart.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-hirth-certs"></div>
+  </div>
+</section>
+
+<!-- FORT GROUP -->
+<section id="fort">
+  <p class="eyebrow">Work Experience</p>
+  <h2 class="page-title">Fort Group</h2>
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-role">Reverse Engineering Intern</div>
+        <div class="card-company">Fort Group · Abu Dhabi, UAE</div>
+      </div>
+      <div class="card-date">Abu Dhabi · 2025–2026</div>
+    </div>
+    <p class="card-desc">
+      Full reverse engineering pipeline in a defense-adjacent manufacturing environment. Operated Hexagon 3D
+      scanning equipment to capture high-precision geometry of mechanical components, then processed and
+      reconstructed accurate CAD models using Geomagic software — producing digital twins for analysis and
+      re-manufacturing applications.
+    </p>
+    <div class="chips">
+      <span class="chip">Hexagon 3D Scanning</span>
+      <span class="chip">Geomagic Design X</span>
+      <span class="chip">Reverse Engineering</span>
+      <span class="chip">Point Cloud Processing</span>
+      <span class="chip">CAD Reconstruction</span>
+      <span class="chip">Metrology</span>
+      <span class="chip">SolidWorks</span>
+    </div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">01</div>
+      <div>
+        <div class="subsection-title">Hexagon 3D Scanning</div>
+        <p class="subsection-desc">Operated Hexagon industrial 3D scanning equipment to capture precise surface geometry of mechanical parts. Process involved scanner setup, calibration, multi-angle capture, and raw point cloud export — the foundation of the entire reverse engineering workflow.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-fort-scanning"></div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">02</div>
+      <div>
+        <div class="subsection-title">Geomagic — CAD Reconstruction</div>
+        <p class="subsection-desc">Processed raw point cloud data in Geomagic Design X to clean, mesh, and reconstruct accurate parametric CAD models. Outputs were used for analysis, design validation, and re-manufacturing of components where original drawings were unavailable.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-fort-geomagic"></div>
+  </div>
+
+  <div class="subsection-card">
+    <div class="subsection-header">
+      <div class="subsection-number">03</div>
+      <div>
+        <div class="subsection-title">Completed Models &amp; Output</div>
+        <p class="subsection-desc">Final CAD models, renders, and deliverables from the full scanning-to-model pipeline. STL exports, SolidWorks assemblies, and engineering outputs produced during the internship.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery-fort-models"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="eyebrow">Academic Background</p>
+  <h2 class="page-title">Education</h2>
+  <div class="divider"></div>
+
+  <div class="edu-card">
+    <div class="edu-year">2026–<br/>2028</div>
+    <div>
+      <div class="edu-degree">M.Sc. Smart Systems</div>
+      <div class="edu-school">Hochschule Furtwangen University (HFU) · Germany</div>
+      <p class="edu-detail">Incoming Winter Semester 2026/27. Focus on intelligent systems, sensor fusion, and embedded technologies — directly aligned with autonomous systems and defense applications.</p>
+    </div>
+  </div>
+
+  <div class="edu-card">
+    <div class="edu-year">2019–<br/>2024</div>
+    <div>
+      <div class="edu-degree">B.Sc. Automotive Mechatronics Engineering</div>
+      <div class="edu-school">German International University (GIU) · Cairo, Egypt</div>
+      <p class="edu-detail">240 ECTS credits. German-accredited curriculum. Bachelor's thesis: Autonomous Obstacle Avoidance using LiDAR, Fuzzy Logic Control, and MATLAB/CoppeliaSim simulation.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:40px">
+    <p class="eyebrow">Languages</p>
+    <div class="lang-row">
+      <div class="lang-pill">Arabic <span>Native</span></div>
+      <div class="lang-pill">English <span>Fluent</span></div>
+      <div class="lang-pill">German <span>B1 Working Level</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="eyebrow">Technical Profile</p>
+  <h2 class="page-title">Skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <div class="skill-cat-title">CAD &amp; Design</div>
+      <div class="skill-items">
+        <span class="skill-item">CATIA V5</span>
+        <span class="skill-item">SolidWorks</span>
+        <span class="skill-item">Geomagic Design X</span>
+        <span class="skill-item">Fusion 360</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">3D Scanning &amp; Metrology</div>
+      <div class="skill-items">
+        <span class="skill-item">Hexagon 3D Scanner</span>
+        <span class="skill-item">Point Cloud Processing</span>
+        <span class="skill-item">Reverse Engineering</span>
+        <span class="skill-item">CAD Reconstruction</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Programming</div>
+      <div class="skill-items">
+        <span class="skill-item">MATLAB / Simulink</span>
+        <span class="skill-item">Python</span>
+        <span class="skill-item">C++</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Standards &amp; Testing</div>
+      <div class="skill-items">
+        <span class="skill-item">DO-160G</span>
+        <span class="skill-item">RTCA</span>
+        <span class="skill-item">ISO Standards</span>
+        <span class="skill-item">Environmental Testing</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Domains</div>
+      <div class="skill-items">
+        <span class="skill-item">Defense &amp; Aerospace</span>
+        <span class="skill-item">Autonomous Systems</span>
+        <span class="skill-item">UAVs</span>
+        <span class="skill-item">Robotics</span>
+        <span class="skill-item">LiDAR</span>
+        <span class="skill-item">Fuzzy Logic</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Simulation</div>
+      <div class="skill-items">
+        <span class="skill-item">CoppeliaSim</span>
+        <span class="skill-item">MATLAB/Simulink</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <p class="eyebrow">Download</p>
+  <h2 class="page-title">Resume</h2>
+  <div class="divider"></div>
+  <div class="resume-box">
+    <div class="file-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.5">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+    </div>
+    <h3>Yousef Elrefaey — CV</h3>
+    <p>Mechatronics Engineer · Defense &amp; Aerospace · Abu Dhabi / Germany</p>
+    <!-- REPLACE href with your actual CV PDF -->
+    <a href="resume/CV_Yousef_Elrefaey.pdf" download class="btn btn-primary" style="margin:0 auto;display:inline-flex;">
+      Download CV (PDF)
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="eyebrow">Get in Touch</p>
+  <h2 class="page-title">Contact</h2>
+  <div class="divider"></div>
+
+  <div class="contact-cards">
+    <!-- REPLACE with your actual email -->
+    <a href="mailto:YOUR_EMAIL@gmail.com" class="contact-card">
+      <div class="c-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="c-label">Email</div>
+        <div class="c-value">YOUR_EMAIL@gmail.com</div>
+      </div>
+    </a>
+    <!-- REPLACE with your LinkedIn URL -->
+    <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank" class="contact-card">
+      <div class="c-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0e9f6e" stroke-width="1.5">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="c-label">LinkedIn</div>
+        <div class="c-value">Connect with me ↗</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="contact-blurb">
+    <strong>Open to full-time roles, internships, and Werkstudent positions in Germany and the UAE.</strong><br/><br/>
+    I'm a Mechatronics Engineer with hands-on experience in aviation engine testing (DO-160G compliance) and
+    industrial reverse engineering using Hexagon 3D scanning and Geomagic. I'm currently finishing my final
+    internship before starting my M.Sc. in Smart Systems in Germany.<br/><br/>
+    My core interests are in <strong>defense systems, autonomous vehicles, UAVs, and AI-driven engineering</strong>.
+    I enjoy working where hardware and intelligent systems meet — sensor integration, systems engineering,
+    mechanical development, or R&amp;D in aerospace and defense contexts.<br/><br/>
+    If you think I'd be a good fit — whether for a full-time role, a Praktikum, or a Werkstudentenstelle —
+    don't hesitate to reach out by email or on LinkedIn.
+  </div>
+</section>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('nav-' + id).classList.add('active');
+    window.scrollTo(0, 0);
+    return false;
+  }
+
+  function buildGallery(containerId, count) {
+    const container = document.getElementById(containerId);
+    for (let i = 0; i < count; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'gallery-slot';
+      slot.innerHTML = `
+        <input type="file" accept="image/*" onchange="loadImg(this)"/>
+        <div class="slot-empty">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span>Add image</span>
+        </div>`;
+      container.appendChild(slot);
+    }
+  }
+
+  function loadImg(input) {
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const slot = input.parentElement;
+      slot.querySelector('.slot-empty').style.display = 'none';
+      let img = slot.querySelector('img');
+      if (!img) { img = document.createElement('img'); slot.appendChild(img); }
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  buildGallery('gallery-hirth-testing', 4);
+  buildGallery('gallery-hirth-catia', 4);
+  buildGallery('gallery-hirth-certs', 4);
+  buildGallery('gallery-fort-scanning', 4);
+  buildGallery('gallery-fort-geomagic', 4);
+  buildGallery('gallery-fort-models', 4);
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+
+  // ── EDIT MODE ──
+  let editMode = false;
+
+  const editBtn = document.createElement('button');
+  editBtn.id = 'edit-toggle';
+  editBtn.innerHTML = '✏️ Edit Mode: OFF';
+  editBtn.style.cssText = `
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background: #1a56db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(26,86,219,0.3);
+    transition: background 0.2s;
+  `;
+  document.body.appendChild(editBtn);
+
+  // Elements that should be editable
+  const editableSelectors = [
+    '.card-role', '.card-company', '.card-date', '.card-desc',
+    '.chip', '.page-title', '.eyebrow',
+    '.edu-degree', '.edu-school', '.edu-detail', '.edu-year',
+    '.skill-item', '.skill-cat-title',
+    '.hero h1', '.hero-sub', '.tag',
+    '.contact-blurb', '.c-value',
+    '.resume-box h3', '.resume-box p',
+    '.gallery-label', '.lang-pill', '.subsection-title', '.subsection-desc'
+  ];
+
+  editBtn.addEventListener('click', () => {
+    editMode = !editMode;
+    editBtn.innerHTML = editMode ? '💾 Edit Mode: ON — click text to edit' : '✏️ Edit Mode: OFF';
+    editBtn.style.background = editMode ? '#0e9f6e' : '#1a56db';
+
+    editableSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (editMode) {
+          el.setAttribute('contenteditable', 'true');
+          el.style.outline = '2px dashed #1a56db';
+          el.style.borderRadius = '4px';
+          el.style.minWidth = '20px';
+          el.style.cursor = 'text';
+        } else {
+          el.removeAttribute('contenteditable');
+          el.style.outline = '';
+          el.style.cursor = '';
+        }
+      });
+    });
+
+    if (!editMode) {
+      // Show save reminder
+      const toast = document.createElement('div');
+      toast.textContent = '✅ Changes saved locally. Re-upload index.html to GitHub to publish.';
+      toast.style.cssText = `
+        position: fixed; bottom: 80px; right: 24px;
+        background: #111827; color: #fff;
+        padding: 12px 20px; border-radius: 10px;
+        font-size: 0.82rem; font-family: 'DM Sans', sans-serif;
+        z-index: 999; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        animation: fadeUp 0.3s ease;
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+  });
+
+  // Add chip / add skill buttons
+  function addAddButtons() {
+    document.querySelectorAll('.chips, .skill-items').forEach(container => {
+      if (container.querySelector('.add-chip-btn')) return;
+      const btn = document.createElement('button');
+      btn.className = 'add-chip-btn';
+      btn.textContent = '+ Add';
+      btn.style.cssText = `
+        display: none;
+        background: #eff4ff; border: 1px dashed #1a56db;
+        color: #1a56db; font-size: 0.78rem; padding: 4px 12px;
+        border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      `;
+      btn.addEventListener('click', () => {
+        const isChips = container.classList.contains('chips');
+        const newEl = document.createElement('span');
+        newEl.className = isChips ? 'chip' : 'skill-item';
+        newEl.textContent = 'New item';
+        newEl.setAttribute('contenteditable', 'true');
+        newEl.style.outline = '2px dashed #1a56db';
+        newEl.style.borderRadius = '4px';
+        newEl.style.cursor = 'text';
+        container.insertBefore(newEl, btn);
+        newEl.focus();
+        // select all text
+        const range = document.createRange();
+        range.selectNodeContents(newEl);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        // right-click to delete
+        newEl.addEventListener('contextmenu', e => {
+          e.preventDefault();
+          if (editMode && confirm('Remove this item?')) newEl.remove();
+        });
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  // Show/hide add buttons with edit mode
+  const origToggle = editBtn.addEventListener;
+  editBtn.addEventListener('click', () => {
+    setTimeout(() => {
+      addAddButtons();
+      document.querySelectorAll('.add-chip-btn').forEach(btn => {
+        btn.style.display = editMode ? 'inline-block' : 'none';
+      });
+      // Allow right-click delete on existing chips/skills
+      document.querySelectorAll('.chip, .skill-item').forEach(el => {
+        el.oncontextmenu = editMode ? (e) => {
+          e.preventDefault();
+          if (confirm('Remove this item?')) el.remove();
+        } : null;
+      });
+    }, 50);
+  });
+
+  addAddButtons();
+</script>
+</body>
+</html>
+<!-- editable mode already handled in rewrite below -->
